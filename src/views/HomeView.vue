@@ -28,9 +28,6 @@ const getInstances = () => {
   })
 }
 
-console.log(window.parent.document);
-
-
 const formatarNumeroWhatsapp = (numero: string) => {
   if (numero != null) return numero.replace('@s.whatsapp.net', '')
   return ''
