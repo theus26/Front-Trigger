@@ -19,7 +19,7 @@ const rules = [
 
 const AdicionarInstancia = () => {
   load.value = true
-  postCriarInstance(`account_${props.accountId}${instanceName.value}`).finally(() => {
+  postCriarInstance(`account_${props.accountId}${instanceName.value}`.replace(/ /g, "_")).finally(() => {
     emit('getInstances');
     load.value = false
   })
