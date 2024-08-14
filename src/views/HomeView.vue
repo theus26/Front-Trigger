@@ -35,7 +35,7 @@ const formatarNumeroWhatsapp = (numero: string) => {
 }
 
 const formataNomeConexao = (conexao: string) => {
-  if (conexao !== null) return conexao.replace('account_3', '')
+  if (conexao !== null) return conexao.replace(`account_${accountId.value}`, '')
   return ''
 }
 </script>
@@ -75,13 +75,13 @@ const formataNomeConexao = (conexao: string) => {
               <Disparar @getInstances="getInstances" :instance="item" />
             </td>
             <td>
-              <Conectar @getInstances="getInstances" :instance="item" />
+              <Conectar :accountId="accountId" @getInstances="getInstances" :instance="item" />
             </td>
             <td>
-              <Desconectar @getInstances="getInstances" :instance="item" />
+              <Desconectar :accountId="accountId" @getInstances="getInstances" :instance="item" />
             </td>
             <td>
-              <Excluir @getInstances="getInstances" :instance="item" />
+              <Excluir :accountId="accountId" @getInstances="getInstances" :instance="item" />
             </td>
 
           </tr>

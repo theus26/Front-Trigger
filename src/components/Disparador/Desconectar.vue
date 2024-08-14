@@ -3,9 +3,13 @@ import { mdiCellphoneNfcOff, mdiClose } from '@mdi/js'
 import type { GetInstancesData } from '@/interfaces/disparador'
 import { ref } from 'vue';
 import { deleteDesconectarInstancia } from '@/service/Disparador/disparadorService';
-defineProps<{
-  instance: GetInstancesData
-}>()
+
+interface Props {
+  instance: GetInstancesData;
+  accountId: string;
+}
+
+const props = defineProps<Props>();
 const emit = defineEmits(['getInstances']);
 const dialog = ref(false)
 const load = ref(false)
@@ -19,7 +23,7 @@ const desconectarInstancia = (instance: string) => {
 }
 
 const formataNomeConexao = (conexao: string) => {
-  if (conexao !== null) return conexao.replace('account_3', '')
+  if (conexao !== null) return conexao.replace(`account_${props.accountId}`, '')
   return ''
 }
 
@@ -27,7 +31,7 @@ const formataNomeConexao = (conexao: string) => {
 
 <template>
   <div>
-    <v-btn :disabled="instance.status !== 'open'" @click="dialog = true" class="tw-bg-red-400" size="small">
+    <v-btn :disabled="props.instance.status !== 'open'" @click="dialog = true" class="tw-bg-red-400" size="small">
       <v-icon :icon="mdiCellphoneNfcOff" class="tw-mr-1" />
       DESCONECTAR
     </v-btn>
@@ -40,11 +44,11 @@ const formataNomeConexao = (conexao: string) => {
           <v-btn :icon="mdiClose" variant="text" @click="dialog = false"></v-btn>
         </v-card-title>
         <v-card-text class="tw-pt-1">
-          Tem certeza que deseja desconectar a conexão de nome <strong>{{ formataNomeConexao(instance.instanceName) }}</strong> ?
+          Tem certeza que deseja desconectar a conexão de nome <strong>{{ formataNomeConexao(props.instance.instanceName) }}</strong> ?
         </v-card-text>
         <template v-slot:actions>
           <v-btn class="ms-auto" text="Confirmar" :loading="load"
-            @click="desconectarInstancia(instance.instanceName)"></v-btn>
+            @click="desconectarInstancia(props.instance.instanceName)"></v-btn>
         </template>
       </v-card>
     </v-dialog>

@@ -46,8 +46,6 @@ const notify = () => {
 }
 
 const extractNumbers = (inputString: string) => {
-  console.log(inputString);
-
   return String(inputString).replace(/[^0-9]/g, '');
 }
 

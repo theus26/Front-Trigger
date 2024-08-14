@@ -7,6 +7,7 @@ import { watch, defineProps } from 'vue';
 
 interface Props {
   instance: GetInstancesData;
+  accountId: string;
 }
 
 const props = defineProps<Props>();
@@ -45,7 +46,7 @@ const getQrcode = () => {
 }
 
 const formataNomeConexao = (conexao: string) => {
-  if (conexao !== null) return conexao.replace('account_3', '')
+  if (conexao !== null) return conexao.replace(`account_${props.accountId}`, '')
   return ''
 }
 
