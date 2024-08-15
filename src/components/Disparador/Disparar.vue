@@ -106,7 +106,7 @@ const handleFileUpload = (event: any) => {
           <div class="tw-my-4 tw-font-normal tw-text-lg">1- Adicione a mensagem que será enviada.</div>
           <v-textarea rows="4" label="Mensagem" v-model="textoParaEnvio"></v-textarea>
           <div class="tw-my-4 tw-font-normal tw-text-lg">2- Adicione os números.</div>
-          <div class="tw-mb-2" >Manual:</div>
+          <div class="tw-mb-2">Manual:</div>
           <div class="tw-flex tw-items-center">
             <div>
               <v-text-field class="tw-h-[58px]" :hide-spin-buttons="true" type="number" label="Numero para envio"
@@ -120,13 +120,13 @@ const handleFileUpload = (event: any) => {
           </div>
           <div class="tw-mt-4 tw-mb-2"> Via planilha:</div>
           <div class="tw-mb-4">
-            <v-btn class="tw-mb-2 tw-bg-gray-200">
-                <label for="fupload" class="control-label label-bordered">
+              <input class="tw-hidden" ref="fileInput" id="fupload" name="fupload" type="file"
+                @change="handleFileUpload" />
+              <label for="fupload" class="control-label label-bordered tw-cursor-pointer tw-mr-1 tw-mb-1 tw-inline-flex tw-items-center tw-rounded-md tw-bg-gray-200 tw-px-4 tw-py-2 tw-text-xs tw-font-medium tw-ring-1 tw-ring-inset tw-ring-gray-500/10">
                 Clique aqui para escolher um arquivo
               </label>
-              </v-btn>
-            <input class="tw-hidden" ref="fileInput" id="fupload" name="fupload" type="file" @change="handleFileUpload" />
-            <div class="tw-font-light tw-text-xs">Obs: Permitido arquivos .csv ou .xlsx(Exel) com a coluna 'numeros'</div>
+            <div class="tw-font-light tw-text-xs">Obs: Permitido arquivos .csv ou .xlsx(Exel) com a coluna 'numeros'.
+            </div>
           </div>
           <div v-if="numerosParaEnvio.length > 0" class="tw-mb-1">
             Numeros adicionados para envio:
