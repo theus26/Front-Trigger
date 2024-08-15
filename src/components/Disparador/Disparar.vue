@@ -106,7 +106,7 @@ const handleFileUpload = (event: any) => {
           <div class="tw-my-4 tw-font-normal tw-text-lg">1- Adicione a mensagem que será enviada.</div>
           <v-textarea rows="4" label="Mensagem" v-model="textoParaEnvio"></v-textarea>
           <div class="tw-my-4 tw-font-normal tw-text-lg">2- Adicione os números.</div>
-          <div>Manual:</div>
+          <div class="tw-mb-2" >Manual:</div>
           <div class="tw-flex tw-items-center">
             <div>
               <v-text-field class="tw-h-[58px]" :hide-spin-buttons="true" type="number" label="Numero para envio"
@@ -118,10 +118,15 @@ const handleFileUpload = (event: any) => {
             <v-btn class="tw-h-[58px] tw-ml-2" :disabled="numeroEnvioInput.length < 12" variant="text"
               @click="adicionarNumero">Adicionar</v-btn>
           </div>
-          <div class="tw-mt-4"> Via planilha:</div>
+          <div class="tw-mt-4 tw-mb-2"> Via planilha:</div>
           <div class="tw-mb-4">
-            Arquivo CSV
-            <input label="teste" ref="fileInput" type="file" @change="handleFileUpload" />
+            <v-btn class="tw-mb-2 tw-bg-gray-200">
+                <label for="fupload" class="control-label label-bordered">
+                Clique aqui para escolher um arquivo
+              </label>
+              </v-btn>
+            <input class="tw-hidden" ref="fileInput" id="fupload" name="fupload" type="file" @change="handleFileUpload" />
+            <div class="tw-font-light tw-text-xs">Obs: Permitido arquivos .csv ou .xlsx(Exel) com a coluna 'numeros'</div>
           </div>
           <div v-if="numerosParaEnvio.length > 0" class="tw-mb-1">
             Numeros adicionados para envio:
