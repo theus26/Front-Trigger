@@ -33,7 +33,12 @@ const postDispararMensagens = async (
   return api.post("/disparar_mensagens", {
     instance_name: instanceName,
     numbers: numbers,
-    message_text: message_text,
+    messages: [
+      {
+        type: "text",
+        message: message_text,
+      },
+    ],
   });
 };
 
