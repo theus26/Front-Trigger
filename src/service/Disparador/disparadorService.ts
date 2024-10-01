@@ -1,4 +1,4 @@
-import type { GetInstances, GetQrcodeInstance } from "@/interfaces/disparador";
+import type { GetInstances, GetQrcodeInstance, PostDataMessagesDisparar } from "@/interfaces/disparador";
 import api from "./api";
 
 const getFetchInstances = async (accountId: string): Promise<GetInstances> => {
@@ -28,17 +28,12 @@ const postCriarInstance = async (instanceName: string): Promise<void> => {
 const postDispararMensagens = async (
   instanceName: string,
   numbers: Array<string>,
-  message_text: string
+  messages: PostDataMessagesDisparar[]
 ): Promise<void> => {
   return api.post("/disparar_mensagens", {
     instance_name: instanceName,
     numbers: numbers,
-    messages: [
-      {
-        type: "text",
-        message: message_text,
-      },
-    ],
+    messages
   });
 };
 
