@@ -1,5 +1,9 @@
 export interface GetInstances {
-  data: GetInstancesData[]
+  data: GetInstancesData[];
+}
+
+export interface CreateInstance {
+  instanceName: string;
 }
 
 export interface GetInstancesData {
@@ -22,9 +26,9 @@ interface Integration {
 }
 
 export interface GetQrcodeInstance {
-  data: GetQrcodeInstanceData
+  data: GetQrcodeInstanceData;
 }
 
-interface GetQrcodeInstanceData {
+export interface GetQrcodeInstanceData {
   base64: string;
 }

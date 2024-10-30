@@ -1,28 +1,40 @@
-import type { GetInstances, GetQrcodeInstance } from "@/interfaces/disparador";
+import type {
+  CreateInstance,
+  GetInstances,
+  GetQrcodeInstance,
+} from "@/interfaces/disparador";
 import api from "./api";
 
 const getFetchInstances = async (accountId: string): Promise<GetInstances> => {
-  return api.get("/fetch_instances_account?account=account_" + accountId);
+  return api.get("/MessageTrigger/FetchInstance", { params: { accountId } });
 };
 
 const getQrcodeInstance = async (
   instanceName: string
 ): Promise<GetQrcodeInstance> => {
-  return api.get("/gerar_qrcode?instance_name=" + instanceName);
+  return api.get("/MessageTrigger/ConnectInstance", {
+    params: { instanceName },
+  });
 };
 
 const deleteDeletarInstancia = async (instanceName: string): Promise<void> => {
-  return api.delete("/deletar_instancia?instance_name=" + instanceName);
+  return api.delete("/MessageTrigger/DeleteInstance", {
+    params: { instanceName },
+  });
 };
 
 const deleteDesconectarInstancia = async (
   instanceName: string
 ): Promise<void> => {
-  return api.delete("/desconectar_instancia?instance_name=" + instanceName);
+  return api.delete("/MessageTrigger/LogoutInstance", {
+    params: { instanceName },
+  });
 };
 
-const postCriarInstance = async (instanceName: string): Promise<void> => {
-  return api.post("/criar_instancia?instance_name=" + instanceName);
+const postCriarInstance = async (
+  instanceName: CreateInstance
+): Promise<void> => {
+  return api.post("/MessageTrigger/CreateInstance", instanceName);
 };
 
 const postDispararMensagens = async (
@@ -30,8 +42,8 @@ const postDispararMensagens = async (
   numbers: Array<string>,
   message_text: string
 ): Promise<void> => {
-  return api.post("/disparar_mensagens", {
-    instance_name: instanceName,
+  return api.post("/MessageTrigger/SendMessageTrigger", {
+    InstanceName: instanceName,
     numbers: numbers,
     messages: [
       {

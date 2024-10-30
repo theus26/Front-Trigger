@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://n8n.chatking.com.br/webhook/disparador",
+  baseURL: "https://localhost:7050",
 });
 
 export default api;
