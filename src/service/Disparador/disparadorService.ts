@@ -2,6 +2,7 @@ import type {
   CreateInstance,
   GetInstances,
   GetQrcodeInstance,
+  PostDataMessagesDisparar,
 } from "@/interfaces/disparador";
 import api from "./api";
 
@@ -40,17 +41,12 @@ const postCriarInstance = async (
 const postDispararMensagens = async (
   instanceName: string,
   numbers: Array<string>,
-  message_text: string
+  messages: PostDataMessagesDisparar[]
 ): Promise<void> => {
   return api.post("/MessageTrigger/SendMessageTrigger", {
     InstanceName: instanceName,
     numbers: numbers,
-    messages: [
-      {
-        type: "text",
-        message: message_text,
-      },
-    ],
+    messages,
   });
 };
 

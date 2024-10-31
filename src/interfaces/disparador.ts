@@ -32,3 +32,14 @@ export interface GetQrcodeInstance {
 export interface GetQrcodeInstanceData {
   base64: string;
 }
+
+export interface PostDataMessagesDisparar {
+  type: string;
+  message?: string;
+  mediatype?: string;
+  mimetype?: string;
+  caption?: string;
+  filename?: string;
+  media?: string;
+  dataUrl?: string;
+}
