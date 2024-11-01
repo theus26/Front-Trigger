@@ -61,43 +61,40 @@ const formataNomeConexao = (conexao: string) => {
           </tr>
         </thead>
         <tbody>
-          <tr v-for="item in instances" :key="item.instance.instanceId">
+          <tr v-for="item in instances" :key="item.instanceId">
             <td>
-              <Profile :img_url="item.instance.profilePictureUrl" />
+              <Profile :img_url="item.profilePictureUrl" />
             </td>
-            <td>{{ formataNomeConexao(item.instance.instanceName) }}</td>
+            <td>{{ formataNomeConexao(item.instanceName) }}</td>
             <td>
               {{
-                item.instance.owner
-                  ? formatarNumeroWhatsapp(item.instance.owner)
+                item.owner
+                  ? formatarNumeroWhatsapp(item.owner)
                   : "xxxxxxxxxxxxx"
               }}
             </td>
             <td>
-              <Disparar
-                @getInstances="getInstances"
-                :instance="item.instance"
-              />
+              <Disparar @getInstances="getInstances" :instance="item" />
             </td>
             <td>
               <Conectar
                 :accountId="accountId"
                 @getInstances="getInstances"
-                :instance="item.instance"
+                :instance="item"
               />
             </td>
             <td>
               <Desconectar
                 :accountId="accountId"
                 @getInstances="getInstances"
-                :instance="item.instance"
+                :instance="item"
               />
             </td>
             <td>
               <Excluir
                 :accountId="accountId"
                 @getInstances="getInstances"
-                :instance="item.instance"
+                :instance="item"
               />
             </td>
           </tr>
