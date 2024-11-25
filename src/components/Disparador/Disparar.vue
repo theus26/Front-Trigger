@@ -54,8 +54,6 @@ const MAX_FILE_SIZE_MB = 40;
 
 const disparar = () => {
   load.value = true;
-  console.log(messages.value);
-
   postDispararMensagens(
     props.instance.instanceName,
     numerosParaEnvio.value,
@@ -162,7 +160,19 @@ const notify = () => {
 };
 
 const extractNumbers = (inputString: string) => {
-  return String(inputString).replace(/[^0-9]/g, "");
+  const rawNumber = String(inputString).replace(/[^0-9]/g, "");
+  if (
+    rawNumber.length < 10 ||
+    (rawNumber.length > 11 && !rawNumber.startsWith("55"))
+  ) {
+    console.error("Número inválido: tamanho incorreto.");
+    toast.error("Número inválido: tamanho incorreto.");
+    return "número invalido";
+  }
+  const completeNumber = rawNumber.startsWith("55")
+    ? rawNumber
+    : `55${rawNumber}`;
+  return completeNumber;
 };
 
 const handleFileUpload = (event: any) => {
@@ -196,7 +206,11 @@ const handleFileUpload = (event: any) => {
       const arrayNumerosFormatados = arrayNumeros.map((item) =>
         extractNumbers(item)
       );
-      numerosParaEnvio.value.push(...arrayNumerosFormatados);
+
+      const numerosValidos = arrayNumerosFormatados.filter(
+        (numero) => numero !== "número invalido"
+      );
+      numerosParaEnvio.value.push(...numerosValidos);
     } else {
       console.error("Coluna 'numeros' não encontrada.");
     }
